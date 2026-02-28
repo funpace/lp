@@ -59,7 +59,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin }) => {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out transform  ${isScrolled ? 'bg-off-black/95 backdrop-blur-md border-b border-white/10 shadow-md' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 sm:px-0 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2 group cursor-pointer">
-            <img src="/logo.png" alt="FUNPACE" className="w-full h-6 object-contain" />
+            <img src="/lp/logo.png" alt="FUNPACE" className="w-full h-6 object-contain" />
           </div>
           <div className="hidden md:flex items-center gap-8"></div>
           <div className="flex items-center gap-6">
@@ -71,7 +71,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin }) => {
 <section id="manifesto" className="relative h-screen flex flex-col justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video key="video" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 scale-105">
-            <source src="/video.mp4" type="video/mp4" />
+            <source src="/lp/video.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-off-black/60 via-transparent to-off-black" />
@@ -136,7 +136,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin }) => {
 
             <div className="grid grid-cols-2 gap-4 relative">
               <div className="absolute -inset-4 bg-neon-volt/5 blur-3xl rounded-full opacity-20 pointer-events-none" />
-              {["/img/01.jpeg","/img/02.jpeg","/img/03.png","/img/04.jpeg"].map((src, i) => (
+              {["/lp/img/01.jpeg","/lp/img/02.jpeg","/lp/img/03.png","/lp/img/04.jpeg"].map((src, i) => (
                 <div key={i} className="aspect-[3/4] bg-neutral-900 relative group overflow-hidden rounded-sm cursor-pointer">
                   <img src={src} className="w-full h-full object-cover grayscale contrast-125 group-hover:scale-110 transition-transform duration-700" alt="Community member" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
@@ -294,7 +294,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin }) => {
       <footer className="py-16 px-6 bg-off-black border-t border-white/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="flex items-center gap-3 group">
-            <img src="/logo.png" alt="FUNPACE" className="w-full h-6 object-contain" />
+            <img src="/lp/logo.png" alt="FUNPACE" className="w-full h-6 object-contain" />
           </div>
           <div className="flex gap-8">
              <a href="https://www.instagram.com/fun__pace" className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Instagram</a>
