@@ -235,6 +235,12 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin }) => {
             </div>
           </div>
         </div>
+                <div className="absolute bottom-10 left-6 md:left-auto md:right-10 flex flex-col items-start md:items-end gap-2 z-10">
+          <span className="text-[10px] font-mono uppercase text-neutral-500 tracking-widest">Role para Iniciar</span>
+          <div className="h-16 w-[1px] bg-white/20 overflow-hidden">
+            <div className="h-full w-full bg-neon-volt -translate-y-full animate-[drop_2s_infinite]" />
+          </div>
+        </div>
       </section>
 
       {/* II. The Social Pillar (The Collective) */}
