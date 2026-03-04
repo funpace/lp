@@ -42,6 +42,19 @@ const installmentLabel = (count: number, amountCents: number) => {
   return `${count}x de ${formatCurrency(Math.round(amountCents / count))}`;
 };
 
+const PHONE_PATTERN = /^\d{2}\s\d{5}-\d{4}$/;
+
+const formatPhone = (input: string) => {
+  const digits = input.replace(/\D/g, '').slice(0, 11);
+  const ddd = digits.slice(0, 2);
+  const firstPart = digits.slice(2, 7);
+  const secondPart = digits.slice(7, 11);
+
+  if (digits.length <= 2) return ddd;
+  if (digits.length <= 7) return `${ddd} ${firstPart}`;
+  return `${ddd} ${firstPart}-${secondPart}`;
+};
+
 const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
   const [step, setStep] = useState<1 | 2>(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -77,15 +90,63 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
     }
   }, [cycleDetails.installments, installments]);
 
+  const validateStepOne = () => {
+    if (!name.trim() || !email.trim() || !phone.trim()) {
+      return 'Preencha todos os campos de dados pessoais.';
+    }
+
+    if (!PHONE_PATTERN.test(phone.trim())) {
+      return 'Celular inválido. Use o formato 99 99999-9999.';
+    }
+
+    return '';
+  };
+
+  const validateStepTwo = () => {
+    if (
+      !zipCode.trim() ||
+      !street.trim() ||
+      !number.trim() ||
+      !neighborhood.trim() ||
+      !city.trim() ||
+      !state.trim() ||
+      !complement.trim()
+    ) {
+      return 'Preencha todos os campos de endereço.';
+    }
+
+    if (state.trim().length !== 2) {
+      return 'UF inválida. Informe 2 letras.';
+    }
+
+    return '';
+  };
+
   const goToAddressStep = (event: React.FormEvent) => {
     event.preventDefault();
     setError('');
+    const validationError = validateStepOne();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     setStep(2);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError('');
+    const stepOneError = validateStepOne();
+    if (stepOneError) {
+      setStep(1);
+      setError(stepOneError);
+      return;
+    }
+    const stepTwoError = validateStepTwo();
+    if (stepTwoError) {
+      setError(stepTwoError);
+      return;
+    }
     setIsLoading(true);
 
     try {
@@ -99,18 +160,18 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
           billing_cycle: billingCycle,
           installments,
           customer: {
-            name,
-            email,
-            phone,
+            name: name.trim(),
+            email: email.trim(),
+            phone: phone.trim(),
           },
           address: {
-            zip_code: zipCode,
-            street,
-            number,
-            neighborhood,
-            city,
-            state,
-            complement,
+            zip_code: zipCode.trim(),
+            street: street.trim(),
+            number: number.trim(),
+            neighborhood: neighborhood.trim(),
+            city: city.trim(),
+            state: state.trim(),
+            complement: complement.trim(),
           },
         }),
       });
@@ -260,11 +321,16 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
                   type="tel"
                   required
                   value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  onChange={(event) => setPhone(formatPhone(event.target.value))}
+                  pattern="^\\d{2}\\s\\d{5}-\\d{4}$"
+                  maxLength={13}
                   className="w-full bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-neon-volt transition-colors"
-                  placeholder="(11) 99999-9999"
+                  placeholder="11 99999-9999"
+                  title="Use o formato 99 99999-9999"
                 />
               </div>
+
+              {error && <p className="text-red-400 text-sm">{error}</p>}
 
               <button
                 type="submit"
@@ -322,11 +388,12 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
                 </div>
                 <div>
                   <label htmlFor="complement" className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
-                    Complemento (opcional)
+                    Complemento
                   </label>
                   <input
                     id="complement"
                     type="text"
+                    required
                     value={complement}
                     onChange={(event) => setComplement(event.target.value)}
                     className="w-full bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-neon-volt transition-colors"

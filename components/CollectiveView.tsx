@@ -45,10 +45,10 @@ const CollectiveView: React.FC<Props> = ({ onBack }) => {
           <div className="grid grid-cols-2 gap-4 relative">
             <div className="absolute -inset-4 bg-cobalt-blue/5 blur-3xl rounded-full opacity-20 pointer-events-none" />
             {[
-              "/lp/img/01.jpeg",
-              "/lp/img/02.jpeg",
-              "/lp/img/03.png",
-              "/lp/img/04.jpeg"
+              "/img/01.jpeg",
+              "/img/02.jpeg",
+              "/img/03.png",
+              "/img/04.jpeg"
             ].map((src, i) => (
               <div key={i} className="aspect-[3/4] bg-neutral-900 relative group overflow-hidden rounded-sm cursor-pointer">
                 <img 

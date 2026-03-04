@@ -19,7 +19,7 @@ const CheckoutSuccessPage: React.FC<Props> = ({ onGoToHome, onGoToPlans }) => {
           Assinatura ativada com sucesso
         </h1>
         <p className="text-neutral-300 mt-4">
-          Seu pagamento foi processado. Em instantes você recebe a confirmação por e-mail.
+          Seu pagamento foi processado. 
         </p>
 
         <div className="mt-8 flex flex-col md:flex-row gap-4">

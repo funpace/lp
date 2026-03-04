@@ -114,17 +114,17 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin, onCheckout }) => {
 
     {/* Logo */}
     <div className="flex items-center gap-2 cursor-pointer">
-      <img src="/lp/logo-tm.png" alt="FUNPACE" className="h-3 object-contain" />
+      <img src="/logo-tm.png" alt="FUNPACE" className="h-3 object-contain" />
     </div>
 
     {/* Desktop Nav */}
     <div className="hidden md:flex items-center gap-6">
-      <button onClick={() => setCurrentView('manifesto')} className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Manifesto</button>
+      {/* <button onClick={() => setCurrentView('manifesto')} className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Manifesto</button>
       <button onClick={() => setCurrentView('collective')} className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Coletivo</button>
       <button onClick={() => setCurrentView('currency')} className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Moeda</button>
       <button onClick={() => setCurrentView('performance')} className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Performance</button>
       <button onClick={() => setCurrentView('partnership')} className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Parcerias</button>
-      <a href="#teste" className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Teste</a>
+      <a href="#teste" className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Teste</a> */}
       <button className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Login</button>
     </div>
 
@@ -163,7 +163,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin, onCheckout }) => {
 
     {/* HEADER */}
     <div className="flex justify-between items-center p-6 border-b border-white/10">
-      <img src="/lp/logo.png" className="h-6" />
+      <img src="/logo.png" className="h-6" />
       <button onClick={() => setMobileMenuOpen(false)}>
         <X className="w-6 h-6" />
       </button>
@@ -217,7 +217,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin, onCheckout }) => {
 <section id="manifesto" className="relative h-screen flex flex-col justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video key="video" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 scale-105">
-            <source src="/lp/video.mp4" type="video/mp4" />
+            <source src="/video.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-off-black/60 via-transparent to-off-black" />
@@ -275,13 +275,13 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin, onCheckout }) => {
               <div className="flex gap-4 pt-4">
                  <div className="flex -space-x-4">
                       <div className="w-12 h-12 rounded-full border-2 border-off-black bg-neutral-800 overflow-hidden grayscale hover:grayscale-0 transition-all duration-300 z-0 hover:z-10 hover:scale-110 cursor-pointer">
-                        <img src="/lp/img/founders/03.png" className="w-full h-full object-cover" />
+                        <img src="/img/founders/03.png" className="w-full h-full object-cover" />
                       </div>
                       <div className="w-12 h-12 rounded-full border-2 border-off-black bg-neutral-800 overflow-hidden grayscale hover:grayscale-0 transition-all duration-300 z-0 hover:z-10 hover:scale-110 cursor-pointer">
-                        <img src="/lp/img/founders/02.png" className="w-full h-full object-cover" />
+                        <img src="/img/founders/02.png" className="w-full h-full object-cover" />
                       </div>
                       <div className="w-12 h-12 rounded-full border-2 border-off-black bg-neutral-800 overflow-hidden grayscale hover:grayscale-0 transition-all duration-300 z-0 hover:z-10 hover:scale-110 cursor-pointer">
-                        <img src="/lp/img/founders/01.png" className="w-full h-full object-cover" />
+                        <img src="/img/founders/01.png" className="w-full h-full object-cover" />
                       </div>
                  </div>
                  <div className="flex flex-col justify-center">
@@ -293,7 +293,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin, onCheckout }) => {
 
             <div className="grid grid-cols-2 gap-4 relative">
               <div className="absolute -inset-4 bg-neon-volt/5 blur-3xl rounded-full opacity-20 pointer-events-none" />
-              {["/lp/img/01.jpeg","/lp/img/02.jpeg","/lp/img/03.png","/lp/img/04.jpeg"].map((src, i) => (
+              {["/img/01.jpeg","/img/02.jpeg","/img/03.png","/img/04.jpeg"].map((src, i) => (
                 <div key={i} className="aspect-[3/4] bg-neutral-900 relative group overflow-hidden rounded-sm cursor-pointer">
                   <img src={src} className="w-full h-full object-cover grayscale contrast-125 group-hover:scale-110 transition-transform duration-700" alt="Community member" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
@@ -450,7 +450,7 @@ const LandingPage: React.FC<Props> = ({ onJoin, onLogin, onCheckout }) => {
       <footer className="py-16 px-6 bg-off-black border-t border-white/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="flex items-center gap-3 group">
-            <img src="/lp/logo.png" alt="FUNPACE" className="w-full h-6 object-contain" />
+            <img src="/logo.png" alt="FUNPACE" className="w-full h-6 object-contain" />
           </div>
           <div className="flex gap-8">
              <a href="https://www.instagram.com/fun__pace" className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 hover:text-white transition-colors">Instagram</a>
