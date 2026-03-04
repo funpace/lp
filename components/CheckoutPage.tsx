@@ -42,19 +42,6 @@ const installmentLabel = (count: number, amountCents: number) => {
   return `${count}x de ${formatCurrency(Math.round(amountCents / count))}`;
 };
 
-const PHONE_PATTERN = /^\d{2}\s\d{5}-\d{4}$/;
-
-const formatPhone = (input: string) => {
-  const digits = input.replace(/\D/g, '').slice(0, 11);
-  const ddd = digits.slice(0, 2);
-  const firstPart = digits.slice(2, 7);
-  const secondPart = digits.slice(7, 11);
-
-  if (digits.length <= 2) return ddd;
-  if (digits.length <= 7) return `${ddd} ${firstPart}`;
-  return `${ddd} ${firstPart}-${secondPart}`;
-};
-
 const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
   const [step, setStep] = useState<1 | 2>(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -95,10 +82,6 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
       return 'Preencha todos os campos de dados pessoais.';
     }
 
-    if (!PHONE_PATTERN.test(phone.trim())) {
-      return 'Celular inválido. Use o formato 99 99999-9999.';
-    }
-
     return '';
   };
 
@@ -109,14 +92,9 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
       !number.trim() ||
       !neighborhood.trim() ||
       !city.trim() ||
-      !state.trim() ||
-      !complement.trim()
+      !state.trim()
     ) {
       return 'Preencha todos os campos de endereço.';
-    }
-
-    if (state.trim().length !== 2) {
-      return 'UF inválida. Informe 2 letras.';
     }
 
     return '';
@@ -303,7 +281,7 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
                 </label>
                 <input
                   id="email"
-                  type="email"
+                  type="text"
                   required
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
@@ -321,12 +299,9 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
                   type="tel"
                   required
                   value={phone}
-                  onChange={(event) => setPhone(formatPhone(event.target.value))}
-                  pattern="^\\d{2}\\s\\d{5}-\\d{4}$"
-                  maxLength={13}
+                  onChange={(event) => setPhone(event.target.value)}
                   className="w-full bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-neon-volt transition-colors"
                   placeholder="11 99999-9999"
-                  title="Use o formato 99 99999-9999"
                 />
               </div>
 
@@ -393,7 +368,6 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
                   <input
                     id="complement"
                     type="text"
-                    required
                     value={complement}
                     onChange={(event) => setComplement(event.target.value)}
                     className="w-full bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-neon-volt transition-colors"
@@ -440,7 +414,6 @@ const CheckoutPage: React.FC<Props> = ({ onBack, plan }) => {
                     id="state"
                     type="text"
                     required
-                    maxLength={2}
                     value={state}
                     onChange={(event) => setState(event.target.value.toUpperCase())}
                     className="w-full bg-black/30 border border-white/20 px-4 py-3 outline-none focus:border-neon-volt transition-colors"
